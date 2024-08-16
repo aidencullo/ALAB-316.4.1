@@ -65,6 +65,14 @@ function validatePassword(evt) {
   return passwordVal;
 }
 
+function storeCredentials(evt) {
+  localStorage.setItem(username.value.toLowerCase(), JSON.stringify({
+    email: email.value.toLowerCase(),
+    password: password.value
+  }));
+}
+
 registration.addEventListener("submit", validateUsername);
 registration.addEventListener("submit", validateEmail);
 registration.addEventListener("submit", validatePassword);
+registration.addEventListener("submit", storeCredentials);
