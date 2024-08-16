@@ -1,78 +1,56 @@
 const registration = document.getElementById("registration");
-const username = registration.elements["username"];
-const email = registration.elements["email"];
-const password = registration.elements["password"];
-const passwordCheck = registration.elements["passwordCheck"];
 
-function validateUsername(evt) {
+function validate(evt) {
+  const { username, email, password, passwordCheck } = registration.elements;
+
+  // Validate Username
   const usernameVal = username.value;
   const uniqueChars = new Set(usernameVal);
   if (uniqueChars.size < 2) {
-    alert(
-      "Your username must contain at least two unique characters."
-    );
+    alert("Your username must contain at least two unique characters.");
     username.focus();
-    evt.returnValue = false;
+    evt.preventDefault();
     return false;
- }
-  evt.returnValue = true;
-  return usernameVal;
-}
+  }
 
-function validateEmail(evt) {
+  // Validate Email
   const emailVal = email.value;
   if (emailVal.includes("example.com")) {
-    alert(
-      "Your email address must not contain 'example.com'."
-    );
+    alert("Your email address must not contain 'example.com'.");
     email.focus();
-    evt.returnValue = false;
+    evt.preventDefault();
     return false;
   }
-  evt.returnValue = true;
-  return emailVal;
-}
 
-function validatePassword(evt) {
+  // Validate Password
   const passwordVal = password.value;
-  const passwordCheckVal = passwordCheck.value;
-  
   if (passwordVal.toLowerCase().includes("password")) {
-    alert(
-      "Your password must not contain the word 'password'."
-    );
+    alert("Your password must not contain the word 'password'.");
     password.focus();
-    evt.returnValue = false;
+    evt.preventDefault();
     return false;
   }
-  if (passwordVal.includes(username.value)) {
-    alert(
-      "Your password must not contain your username."
-    );
+  if (passwordVal.includes(usernameVal)) {
+    alert("Your password must not contain your username.");
     password.focus();
-    evt.returnValue = false;
+    evt.preventDefault();
     return false;
   }
-  if (passwordVal !== passwordCheckVal) {
-    alert(
-      "Your passwords do not match."
-    );
+  if (passwordVal !== passwordCheck.value) {
+    alert("Your passwords do not match.");
     password.focus();
-    evt.returnValue = false;
+    evt.preventDefault();
     return false;
   }
-  evt.returnValue = true;
-  return passwordVal;
-}
 
-function storeCredentials(evt) {
-  localStorage.setItem(username.value.toLowerCase(), JSON.stringify({
-    email: email.value.toLowerCase(),
-    password: password.value
+  // Store Credentials
+  localStorage.setItem(usernameVal.toLowerCase(), JSON.stringify({
+    email: emailVal.toLowerCase(),
+    password: passwordVal
   }));
+
+  alert("Your registration was successful!");
+  return true;
 }
 
-registration.addEventListener("submit", validateUsername);
-registration.addEventListener("submit", validateEmail);
-registration.addEventListener("submit", validatePassword);
-registration.addEventListener("submit", storeCredentials);
+registration.addEventListener("submit", validate);
