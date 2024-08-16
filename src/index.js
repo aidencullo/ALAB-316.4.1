@@ -42,6 +42,14 @@ function validatePassword(evt) {
     evt.returnValue = false;
     return false;
   }
+  if (passwordVal.includes(username.value)) {
+    alert(
+      "Your password must not contain your username."
+    );
+    password.focus();
+    evt.returnValue = false;
+    return false;
+  }
   evt.returnValue = true;
   return passwordVal;
 }
