@@ -2,6 +2,7 @@ const registration = document.getElementById("registration");
 const username = registration.elements["username"];
 const email = registration.elements["email"];
 const password = registration.elements["password"];
+const passwordCheck = registration.elements["passwordCheck"];
 
 function validateUsername(evt) {
   const usernameVal = username.value;
@@ -34,6 +35,8 @@ function validateEmail(evt) {
 
 function validatePassword(evt) {
   const passwordVal = password.value;
+  const passwordCheckVal = passwordCheck.value;
+  
   if (passwordVal.toLowerCase().includes("password")) {
     alert(
       "Your password must not contain the word 'password'."
@@ -45,6 +48,14 @@ function validatePassword(evt) {
   if (passwordVal.includes(username.value)) {
     alert(
       "Your password must not contain your username."
+    );
+    password.focus();
+    evt.returnValue = false;
+    return false;
+  }
+  if (passwordVal !== passwordCheckVal) {
+    alert(
+      "Your passwords do not match."
     );
     password.focus();
     evt.returnValue = false;
