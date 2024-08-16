@@ -1,6 +1,7 @@
 const registration = document.getElementById("registration");
 const username = registration.elements["username"];
 const email = registration.elements["email"];
+const password = registration.elements["password"];
 
 function validateUsername(evt) {
   const usernameVal = username.value;
@@ -31,5 +32,20 @@ function validateEmail(evt) {
   return emailVal;
 }
 
+function validatePassword(evt) {
+  const passwordVal = password.value;
+  if (passwordVal.toLowerCase().includes("password")) {
+    alert(
+      "Your password must not contain the word 'password'."
+    );
+    password.focus();
+    evt.returnValue = false;
+    return false;
+  }
+  evt.returnValue = true;
+  return passwordVal;
+}
+
 registration.addEventListener("submit", validateUsername);
 registration.addEventListener("submit", validateEmail);
+registration.addEventListener("submit", validatePassword);
