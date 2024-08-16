@@ -42,8 +42,8 @@
 	    type="text"
 	    placeholder="Password"
 	    minlength="12"
-            pattern="(?=.*[a-z])(?=.*[A-Z]).+"
-            title="Password must contain at least one uppercase letter."
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*"
+            title="Password must contain at least one lowercase letter, one uppercase letter, and one number."
 	    />
           <span class="input-icon"><i class="fa-solid fa-key"></i></span><br />
 
