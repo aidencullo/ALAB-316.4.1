@@ -33,30 +33,36 @@
 	    name="email"
 	    type="email"
 	    placeholder="Email"
+	    required
 	    />
           <span class="input-icon"><i class="fa-solid fa-envelope"></i></span
           ><br />
 
           <input
 	    name="password"
-	    type="text"
+	    type="password"
 	    placeholder="Password"
 	    minlength="12"
 	    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).*$"
             title="Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character."
+	    required
 	    />
           <span class="input-icon"><i class="fa-solid fa-key"></i></span><br />
 
           <input
             name="passwordCheck"
-            type="text"
+            type="password"
             placeholder="Repeat Password"
           />
           <span class="input-icon"><i class="fa-solid fa-key"></i></span
           ><br /><br />
 
           <div class="flex-row">
-            <input name="terms" type="checkbox" />
+            <input
+	      name="terms"
+	      type="checkbox"
+	      required
+	      />
             <label for="terms"
               >I agree to the&nbsp;<a href="#">Terms of Use</a>.</label
             >
