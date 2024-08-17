@@ -13,6 +13,14 @@ function validate(evt) {
     return false;
   }
 
+  // Check if username is already taken
+  if (localStorage.getItem(usernameVal.toLowerCase())) {
+    alert("Your username is already taken.");
+    username.focus();
+    evt.preventDefault();
+    return false;
+  }
+
   // Validate Email
   const emailVal = email.value;
   if (emailVal.includes("example.com")) {
