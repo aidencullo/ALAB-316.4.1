@@ -57,7 +57,7 @@ const login = document.getElementById("login");
 
 
 function validateLogin(evt) {
-  const { username, password } = login.elements;
+  const { username, password, persist } = login.elements;
   const errors = [];
 
   // Validate Username
@@ -77,6 +77,12 @@ function validateLogin(evt) {
     // Show the first error and stop form submission
     showError(errors[0].element, errors[0].message, evt);
     return false;
+  }
+
+  if (persist.checked) {
+    alert("Your login was successful! Your credentials will be stored.");
+  } else {
+    alert("Your login was successful!");
   }
   return true;
 }
