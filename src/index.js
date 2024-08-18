@@ -6,7 +6,7 @@ function showError(element, message, evt) {
   evt.preventDefault();
 }
 
-function validate(evt) {
+function validateRegistration(evt) {
   const { username, email, password, passwordCheck } = registration.elements;
   const errors = [];
 
@@ -51,4 +51,27 @@ function validate(evt) {
   return true;
 }
 
-registration.addEventListener("submit", validate);
+registration.addEventListener("submit", validateRegistration);
+
+const login = document.getElementById("login");
+
+
+function validateLogin(evt) {
+  const { username, password } = login.elements;
+  const errors = [];
+
+  // Validate Username
+  const usernameVal = username.value;
+  if (!localStorage.getItem(usernameVal.toLowerCase())) {
+    errors.push({ element: username, message: "Your username does not exist." });
+  }
+
+  if (errors.length > 0) {
+    // Show the first error and stop form submission
+    showError(errors[0].element, errors[0].message, evt);
+    return false;
+  }
+  return true;
+}
+
+login.addEventListener("submit", validateLogin);
