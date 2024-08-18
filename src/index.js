@@ -62,8 +62,15 @@ function validateLogin(evt) {
 
   // Validate Username
   const usernameVal = username.value;
-  if (!localStorage.getItem(usernameVal.toLowerCase())) {
+  const user = JSON.parse(localStorage.getItem(usernameVal.toLowerCase()));
+  if (!user) {
     errors.push({ element: username, message: "Your username does not exist." });
+  }
+
+  // Validate Password
+  const passwordVal = password.value;
+  if (user?.password !== passwordVal) {
+    errors.push({ element: username, message: "Your password is incorrect." });
   }
 
   if (errors.length > 0) {
